@@ -19,14 +19,18 @@ from PIL import Image as _Image  # using _ to minimize namespace pollution
 
 from gradio import processing_utils, utils, Error
 from gradio.components.base import Component, _Keywords, Block
+
 try:
     from gradio.deprecation import warn_style_method_deprecation
 except Exception:  # pragma: no cover - fallback for older gradio versions
+
     def warn_style_method_deprecation() -> None:
         warnings.warn(
             "The style() method is deprecated. Please set style arguments in the constructor instead.",
             DeprecationWarning,
         )
+
+
 try:
     from gradio.events import (
         Changeable,
@@ -74,14 +78,17 @@ except Exception:  # pragma: no cover - fallback for newer gradio versions
         def __init__(self) -> None:
             self.upload = Events.upload.listener.__get__(self, self.__class__)
 
+
 try:
     from gradio.interpretation import TokenInterpretable
 except Exception:  # pragma: no cover - fallback for newer gradio versions
+
     class TokenInterpretable:
         """Fallback stub for Gradio <5.34 TokenInterpretable mixin."""
 
         def __init__(self, *_: Any, **__: Any) -> None:
             pass
+
 
 set_documentation_group("component")
 _Image.init()  # fixes https://github.com/gradio-app/gradio/issues/2843
@@ -141,6 +148,13 @@ class Image(
         show_share_button: bool | None = None,
         **kwargs,
     ):
+        # Initialize event mixins for gradio >=5.34 compatibility
+        Editable.__init__(self)
+        Clearable.__init__(self)
+        Changeable.__init__(self)
+        Streamable.__init__(self)
+        Selectable.__init__(self)
+        Uploadable.__init__(self)
         """
         Parameters:
             value: A PIL Image, numpy array, path or URL for the default value that Image component is going to take. If callable, the function will be called whenever the app loads to set the initial value of the component.
@@ -508,7 +522,7 @@ class Image(
 
 all_components = []
 
-if not hasattr(Block, 'original__init__'):
+if not hasattr(Block, "original__init__"):
     Block.original_init = Block.__init__
 
 
@@ -522,7 +536,7 @@ Block.__init__ = blk_ini
 
 gradio.routes.asyncio = importlib.reload(gradio.routes.asyncio)
 
-if not hasattr(gradio.routes.asyncio, 'original_wait_for'):
+if not hasattr(gradio.routes.asyncio, "original_wait_for"):
     gradio.routes.asyncio.original_wait_for = gradio.routes.asyncio.wait_for
 
 
@@ -532,4 +546,3 @@ def patched_wait_for(fut, timeout):
 
 
 gradio.routes.asyncio.wait_for = patched_wait_for
-
