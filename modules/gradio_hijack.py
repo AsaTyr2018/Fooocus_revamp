@@ -19,7 +19,14 @@ from PIL import Image as _Image  # using _ to minimize namespace pollution
 
 from gradio import processing_utils, utils, Error
 from gradio.components.base import Component, _Keywords, Block
-from gradio.deprecation import warn_style_method_deprecation
+try:
+    from gradio.deprecation import warn_style_method_deprecation
+except Exception:  # pragma: no cover - fallback for older gradio versions
+    def warn_style_method_deprecation() -> None:
+        warnings.warn(
+            "The style() method is deprecated. Please set style arguments in the constructor instead.",
+            DeprecationWarning,
+        )
 from gradio.events import (
     Changeable,
     Clearable,
