@@ -22,6 +22,10 @@ For those interested in utilizing newer models such as **Flux**, we recommend ex
 
 Again, recently many fake websites exist on Google when you search “fooocus”. Do **NOT** get Fooocus from those websites – this page is the only official source of Fooocus. We never have any website like such as “fooocus.com”, “fooocus.net”, “fooocus.co”, “fooocus.ai”, “fooocus.org”, “fooocus.pro”, “fooocus.one”. Those websites are ALL FAKE. **They have ABSOLUTLY no relationship to us. Fooocus is a 100% non-commercial offline open-source software.**
 
+## Updates
+
+See the [update log](update_log.md) for recent changes.
+
 # Features
 
 Below is a quick list using Midjourney's examples:
@@ -124,6 +128,18 @@ Note that this Colab will disable refiner by default because Colab free's resour
 Using `--always-high-vram` shifts resource allocation from RAM to VRAM and achieves the overall best balance between performance, flexibility and stability on the default T4 instance. Please find more information [here](https://github.com/lllyasviel/Fooocus/pull/1710#issuecomment-1989185346).
 
 Thanks to [camenduru](https://github.com/camenduru) for the template!
+
+### Linux Quick Setup (fooocus_manager.sh)
+
+This repository provides a helper script to install and update Fooocus on Linux:
+
+```bash
+chmod +x fooocus_manager.sh
+./fooocus_manager.sh install
+./fooocus_manager.sh start
+```
+
+Use `./fooocus_manager.sh update` to upgrade or `./fooocus_manager.sh remove` to uninstall.
 
 ### Linux (Using Anaconda)
 
