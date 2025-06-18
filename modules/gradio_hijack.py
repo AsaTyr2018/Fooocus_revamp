@@ -40,7 +40,7 @@ if not hasattr(processing_utils, "encode_array_to_base64"):
         if arr.dtype != np.uint8:
             arr = np.clip(arr, 0, 255)
             arr = arr.astype(np.uint8)
-        img = Image.fromarray(arr)
+        img = _Image.fromarray(arr)
         return processing_utils.encode_pil_to_base64(img, format=format)
 
     processing_utils.encode_array_to_base64 = encode_array_to_base64  # type: ignore[attr-defined]
