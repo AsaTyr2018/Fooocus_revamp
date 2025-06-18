@@ -16,7 +16,14 @@ try:
     branch_name = repo.head.shorthand
 
     remote_name = 'origin'
-    remote = repo.remotes[remote_name]
+    remote_url = 'https://github.com/AsaTyr2018/Fooocus_revamp'
+
+    if remote_name in [r.name for r in repo.remotes]:
+        remote = repo.remotes[remote_name]
+        if remote.url != remote_url:
+            remote.set_url(remote_url)
+    else:
+        remote = repo.remotes.create(remote_name, remote_url)
 
     remote.fetch()
 
