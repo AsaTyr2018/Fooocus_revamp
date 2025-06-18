@@ -27,15 +27,52 @@ except Exception:  # pragma: no cover - fallback for older gradio versions
             "The style() method is deprecated. Please set style arguments in the constructor instead.",
             DeprecationWarning,
         )
-from gradio.events import (
-    Changeable,
-    Clearable,
-    Editable,
-    EventListenerMethod,
-    Selectable,
-    Streamable,
-    Uploadable,
-)
+try:
+    from gradio.events import (
+        Changeable,
+        Clearable,
+        Editable,
+        EventListenerMethod,
+        Selectable,
+        Streamable,
+        Uploadable,
+    )
+except Exception:  # pragma: no cover - fallback for newer gradio versions
+    from gradio.events import Events, EventListenerMethod
+
+    class Changeable:
+        def __init__(self) -> None:
+            self.change = Events.change.listener.__get__(self, self.__class__)
+
+    class Clearable:
+        def __init__(self) -> None:
+            self.clear = Events.clear.listener.__get__(self, self.__class__)
+
+    class Editable:
+        def __init__(self) -> None:
+            self.edit = Events.edit.listener.__get__(self, self.__class__)
+
+    class Selectable:
+        def __init__(self) -> None:
+            self.selectable = False
+            self.select = Events.select.listener.__get__(self, self.__class__)
+
+        def get_config(self):  # type: ignore[override]
+            config = super().get_config() if hasattr(super(), "get_config") else {}
+            config["selectable"] = self.selectable
+            return config
+
+    class Streamable:
+        def __init__(self) -> None:
+            self.streaming = False
+            self.stream = Events.stream.listener.__get__(self, self.__class__)
+
+        def check_streamable(self) -> None:
+            pass
+
+    class Uploadable:
+        def __init__(self) -> None:
+            self.upload = Events.upload.listener.__get__(self, self.__class__)
 from gradio.interpretation import TokenInterpretable
 
 set_documentation_group("component")
