@@ -23,10 +23,10 @@ from gradio import processing_utils, utils, Error
 # Compatibility helpers for removed gradio functions
 # -----------------------------------------------------------------------------
 import base64
-from PIL import Image
+from PIL import Image as PilImage
 
 if not hasattr(processing_utils, "encode_pil_to_base64"):
-    def encode_pil_to_base64(pil_image: Image.Image, format: str = "png") -> str:
+    def encode_pil_to_base64(pil_image: PilImage.Image, format: str = "png") -> str:
         """Encode a PIL Image to a base64 data URL."""
         bytes_data = processing_utils.encode_pil_to_bytes(pil_image, format=format)
         b64 = base64.b64encode(bytes_data).decode("utf-8")
@@ -40,7 +40,7 @@ if not hasattr(processing_utils, "encode_array_to_base64"):
         if arr.dtype != np.uint8:
             arr = np.clip(arr, 0, 255)
             arr = arr.astype(np.uint8)
-        img = _Image.fromarray(arr)
+        img = PilImage.fromarray(arr)
         return processing_utils.encode_pil_to_base64(img, format=format)
 
     processing_utils.encode_array_to_base64 = encode_array_to_base64  # type: ignore[attr-defined]
