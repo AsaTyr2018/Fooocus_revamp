@@ -522,6 +522,22 @@ class Image(
             return input_data
         return str(utils.abspath(input_data))
 
+    def example_payload(self) -> Any:
+        """Return example payload using gradio's default Image component."""
+        try:
+            from gradio.components import Image as _GrImage
+            return _GrImage().example_payload()
+        except Exception:
+            return None
+
+    def example_value(self) -> Any:
+        """Return example value using gradio's default Image component."""
+        try:
+            from gradio.components import Image as _GrImage
+            return _GrImage().example_value()
+        except Exception:
+            return None
+
 
 all_components = []
 
