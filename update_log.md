@@ -1,6 +1,7 @@
-# [2.5.5](https://github.com/lllyasviel/Fooocus/releases/tag/v2.5.5)
+# [2.5.5-b1](https://github.com/lllyasviel/Fooocus/releases/tag/v2.5.5-b1)
 
 * Fix colab inpaint issue by moving an import statement
+* Experimental release - features under active development
 
 # [2.5.4](https://github.com/lllyasviel/Fooocus/releases/tag/v2.5.4)
 
