@@ -2,6 +2,8 @@
 
 Fooocus Revamp is a modern reimagining of the beloved image generator [Fooocus](https://github.com/lllyasviel/Fooocus). The goal remains the same &mdash; deliver stunning AI generated images without the usual sea of sliders or heavy setup steps &mdash; but the engine has been rebuilt with up‑to‑date libraries and a streamlined workflow.
 
+**Version 2.5.5-b1** *(Experimental)*
+
 Created originally by [lllyasviel](https://github.com/lllyasviel/), Fooocus proved that high quality text‑to‑image generation can be simple and offline. This repository continues that work while upgrading the internals to the latest diffusion technology and providing a clean base for further experimentation.
 
 ## Features at a Glance
