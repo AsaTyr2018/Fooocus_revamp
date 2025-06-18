@@ -104,7 +104,7 @@ Please do not trust those wrong tutorials on the internet, and please only trust
 
 ### subprocess-exited-with-error
 
-Please use python 3.10
+Please use python 3.12
 
 Also, you are not following the official installation guide. 
 

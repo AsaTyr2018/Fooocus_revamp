@@ -42,7 +42,7 @@ def prepare_environment():
         if REINSTALL_ALL or not is_installed("xformers"):
             xformers_package = os.environ.get('XFORMERS_PACKAGE', 'xformers==0.0.23')
             if platform.system() == "Windows":
-                if platform.python_version().startswith("3.10"):
+                if platform.python_version().startswith("3.12"):
                     run_pip(f"install -U -I --no-deps {xformers_package}", "xformers", live=True)
                 else:
                     print("Installation of xformers is not supported in this version of Python.")

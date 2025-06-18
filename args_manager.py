@@ -46,7 +46,12 @@ args_parser.parser.set_defaults(
     port=None
 )
 
-args_parser.args = args_parser.parser.parse_args()
+import os
+import sys
+if 'pytest' in sys.modules or 'PYTEST_CURRENT_TEST' in os.environ:
+    args_parser.args = args_parser.parser.parse_args([])
+else:
+    args_parser.args = args_parser.parser.parse_args()
 
 # (Disable by default because of issues like https://github.com/lllyasviel/Fooocus/issues/724)
 args_parser.args.always_offload_from_vram = not args_parser.args.disable_offload_from_vram
