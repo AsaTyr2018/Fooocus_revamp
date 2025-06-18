@@ -175,6 +175,7 @@ def worker():
     import torch
     import time
     import shared
+    import args_manager
     import random
     import copy
     import cv2
@@ -206,7 +207,15 @@ def worker():
 
     try:
         async_gradio_app = shared.gradio_root
-        flag = f'''App started successful. Use the app with {str(async_gradio_app.local_url)} or {str(async_gradio_app.server_name)}:{str(async_gradio_app.server_port)}'''
+        import socket
+        extra_url = ""
+        if args_manager.args.local_share:
+            try:
+                local_ip = socket.gethostbyname(socket.gethostname())
+                extra_url = f" or http://{local_ip}:{str(async_gradio_app.server_port)}"
+            except Exception:
+                pass
+        flag = f'''App started successful. Use the app with {str(async_gradio_app.local_url)} or {str(async_gradio_app.server_name)}:{str(async_gradio_app.server_port)}{extra_url}'''
         if async_gradio_app.share:
             flag += f''' or {async_gradio_app.share_url}'''
         print(flag)
