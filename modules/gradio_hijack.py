@@ -19,6 +19,7 @@ from PIL import Image as _Image  # using _ to minimize namespace pollution
 
 from gradio import processing_utils, utils, Error
 from gradio.components.base import Component, _Keywords, Block
+from gradio.data_classes import ImageData
 
 try:
     from gradio.deprecation import warn_style_method_deprecation
@@ -114,6 +115,8 @@ class Image(
     Demos: image_mod, image_mod_default_image
     Guides: image-classification-in-pytorch, image-classification-in-tensorflow, image-classification-with-vision-transformers, building-a-pictionary_app, create-your-own-friends-with-a-gan
     """
+
+    data_model = ImageData
 
     def __init__(
         self,
