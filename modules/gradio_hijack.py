@@ -73,7 +73,15 @@ except Exception:  # pragma: no cover - fallback for newer gradio versions
     class Uploadable:
         def __init__(self) -> None:
             self.upload = Events.upload.listener.__get__(self, self.__class__)
-from gradio.interpretation import TokenInterpretable
+
+try:
+    from gradio.interpretation import TokenInterpretable
+except Exception:  # pragma: no cover - fallback for newer gradio versions
+    class TokenInterpretable:
+        """Fallback stub for Gradio <5.34 TokenInterpretable mixin."""
+
+        def __init__(self, *_: Any, **__: Any) -> None:
+            pass
 
 set_documentation_group("component")
 _Image.init()  # fixes https://github.com/gradio-app/gradio/issues/2843
