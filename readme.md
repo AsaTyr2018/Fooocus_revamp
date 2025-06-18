@@ -149,7 +149,7 @@ Use `python entry_with_update.py --preset anime` or `python entry_with_update.py
 
 ### Linux (Using Python Venv)
 
-Your Linux needs to have **Python 3.10** installed, and let's say your Python can be called with the command **python3** with your venv system working; you can
+Your Linux needs to have **Python 3.12** installed, and let's say your Python can be called with the command **python3** with your venv system working; you can
 
     git clone https://github.com/lllyasviel/Fooocus.git
     cd Fooocus
@@ -171,7 +171,7 @@ Use `python entry_with_update.py --preset anime` or `python entry_with_update.py
 
 ### Linux (Using native system Python)
 
-If you know what you are doing, and your Linux already has **Python 3.10** installed, and your Python can be called with the command **python3** (and Pip with **pip3**), you can
+If you know what you are doing, and your Linux already has **Python 3.12** installed, and your Python can be called with the command **python3** (and Pip with **pip3**), you can
 
     git clone https://github.com/lllyasviel/Fooocus.git
     cd Fooocus
