@@ -1,4 +1,4 @@
-# [2.5.5-b1](https://github.com/AsaTyr2018/Fooocus_revamp/releases/tag/v2.5.5-b1)
+# [2.5.5-b1]
 * Updated all Libarys to newer Versions
 * Fixed issues with new Gradio 5 (Not all)
 
